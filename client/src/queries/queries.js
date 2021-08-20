@@ -18,6 +18,25 @@ const getDirectorsQuery = gql`
   }
 `;
 
+const getMovieQuery = gql`
+  query ($id: ID) {
+    movie(id: $id) {
+      id
+      name
+      genre
+      director {
+        id
+        name
+        age
+        movies {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
 const addMovieMutation = gql`
   mutation AddMovie($name: String!, $genre: String!, $directorId: ID!) {
     addMovie(name: $name, genre: $genre, directorId: $directorId) {
@@ -27,4 +46,4 @@ const addMovieMutation = gql`
   }
 `;
 
-export { getMoviesQuery, getDirectorsQuery, addMovieMutation };
+export { getMoviesQuery, getDirectorsQuery, getMovieQuery, addMovieMutation };
